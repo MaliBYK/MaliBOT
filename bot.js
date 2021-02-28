@@ -11,6 +11,10 @@ const I_AM_BOY_COMMAND = "bay";
 const I_AM_GIRL_COMMAND = "bayan";
 const SHOW_AVATAR_COMMAND = "avatar";
 
+client.on("ready", () => {
+  console.log("Bot logged In");
+});
+
 //?CONDITIONS
 client.on("message", msg => {
   msg.content = msg.content.toLowerCase();
