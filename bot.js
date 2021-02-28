@@ -18,23 +18,29 @@ client.on("ready", () => {
 //?CONDITIONS
 client.on("message", msg => {
   msg.content = msg.content.toLowerCase();
-  if (msg.content === `${BOT_PREFIX}${MALI_KING_COMMAND}`) {
-    reactWithCrown(msg);
-  } else if (msg.content === `${BOT_PREFIX}${I_AM_BOY_COMMAND}`) {
-    IAmBoy(msg);
-  } else if (msg.content === `${BOT_PREFIX}${SHOW_AVATAR_COMMAND}`) {
+
+  if (msg.content === `${BOT_PREFIX}${MALI_KING_COMMAND}`) reactWithCrown(msg);
+  else if (msg.content === `${BOT_PREFIX}${I_AM_BOY_COMMAND}`) IAmBoy(msg);
+  else if (msg.content === `${BOT_PREFIX}${I_AM_GIRL_COMMAND}`) IAmGırl(msg);
+  else if (msg.content === `${BOT_PREFIX}${SHOW_AVATAR_COMMAND}`)
     ShowAvatar(msg);
-  }
 });
 
 //!FUNCTIONS START
 function reactWithCrown(msg) {
   msg.react("👑");
 }
+
 function IAmBoy(msg) {
   msg.member.roles.add("797567992007360522");
   msg.reply("'Baylar' Rolü Başarıyla Eklendi!");
 }
+
+function IAmGirl(msg) {
+  msg.member.roles.add("797567729879482440");
+  msg.reply("'Bayanlar' Rolü Başarıyla Eklendi!");
+}
+
 function ShowAvatar(msg) {
   msg.reply(msg.author.displayAvatarURL());
 }
