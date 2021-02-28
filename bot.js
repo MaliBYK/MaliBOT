@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const chalk = require("chalk");
 const Discord = require("discord.js");
 const client = new Discord.Client({
   partials: ["MESSAGE", "GUILD_MEMBER"],
@@ -42,7 +43,7 @@ function IAmGirl(msg) {
 }
 
 function ShowAvatar(msg) {
-  msg.reply(msg.author.displayAvatarURL());
+  msg.channel.send(msg.author.displayAvatarURL());
 }
 //!FUNCTIONS END
 
