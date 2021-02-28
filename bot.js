@@ -21,7 +21,7 @@ client.on("message", msg => {
 
   if (msg.content === `${BOT_PREFIX}${MALI_KING_COMMAND}`) reactWithCrown(msg);
   else if (msg.content === `${BOT_PREFIX}${I_AM_BOY_COMMAND}`) IAmBoy(msg);
-  else if (msg.content === `${BOT_PREFIX}${I_AM_GIRL_COMMAND}`) IAmGırl(msg);
+  else if (msg.content === `${BOT_PREFIX}${I_AM_GIRL_COMMAND}`) IAmGirl(msg);
   else if (msg.content === `${BOT_PREFIX}${SHOW_AVATAR_COMMAND}`)
     ShowAvatar(msg);
 });
