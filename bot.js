@@ -71,7 +71,7 @@ function Help(msg) {
     // .setAuthor("MaliBOT", "https://i.imgur.com/9Pc3CWS.png", webSite)
     .addFields(
       {
-        name: "Fun Commands Help",
+        name: "Fun Commands Help ",
         value: `${BOT_PREFIX}${FUN_HELP_COMMAND}`,
       },
       {
