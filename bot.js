@@ -19,7 +19,7 @@ const SERVER_INFO_COMMAND = "members";
 const SA_COMMAND = "sa";
 const AS_COMMAND = "as";
 const GM_COMMAND = "günaydın";
-
+const PING_COMMAND = "ping";
 client.on("ready", () => {
   console.log("Bot logged In");
 });
@@ -28,6 +28,10 @@ client.on("ready", () => {
 client.on("message", msg => {
   msg.content = msg.content.toLowerCase();
 
+  if(msg.author.bot)return;
+  else if(!msg.guild) return;
+
+  isItMusicCommand(msg);
   if (msg.content.startsWith(`${MALI_KING_COMMAND}`)) reactWithCrown(msg);
   else if (msg.content === `${BOT_PREFIX}${I_AM_BOY_COMMAND}`) IAmBoy(msg);
   else if (msg.content === `${BOT_PREFIX}${I_AM_GIRL_COMMAND}`) IAmGirl(msg);
@@ -39,6 +43,7 @@ client.on("message", msg => {
   else if (msg.content === `${AS_COMMAND}`) AsReactFunc(msg);
   else if (msg.content.startsWith(`${GM_COMMAND}`)) GmFunc(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${HELP_COMMAND}`)) Help(msg);
+  else if(msg.content.startsWith(`${BOT_PREFIX}${PING_COMMAND}`)) Ping(msg);
 });
 
 //!FUNCTIONS START
@@ -111,6 +116,16 @@ function GmFunc(msg) {
 }
 function AsReactFunc(msg) {
   msg.react("🤲");
+}
+function Ping(msg){
+  msg.reply(client.ws.ping);
+}
+function isItMusicCommand(msg){
+  const args = msg.content.slice(process.env.BOT_PREFIX.length).split(" ");
+  const command = args.shift();
+
+  if(command === "play")
+
 }
 //!FUNCTIONS END
 
