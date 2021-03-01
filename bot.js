@@ -6,7 +6,7 @@ const client = new Discord.Client({
   partials: ["MESSAGE", "GUILD_MEMBER"],
 });
 
-const BOT_PREFIX = "ma!";
+const BOT_PREFIX = process.env.BOT_PREFIX;
 const MALI_KING_COMMAND = "mali king";
 const I_AM_BOY_COMMAND = "boy";
 const I_AM_GIRL_COMMAND = "girl";
