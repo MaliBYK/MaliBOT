@@ -16,6 +16,9 @@ const FUN_HELP_COMMAND = `${HELP_COMMAND} fun`;
 const MODERATOR_HELP_COMMAND = `${HELP_COMMAND} moderator`;
 const MEMBER_HELP_COMMAND = `${HELP_COMMAND} member`;
 const SERVER_INFO_COMMAND = "members";
+const SA_COMMAND = "sa";
+const AS_COMMAND = "as";
+const GM_COMMAND = "günaydın";
 
 client.on("ready", () => {
   console.log("Bot logged In");
@@ -32,6 +35,9 @@ client.on("message", msg => {
     ShowAvatar(msg);
   else if (msg.content === `${BOT_PREFIX}${SERVER_INFO_COMMAND}`)
     NumberOfPeople(msg);
+  else if (msg.content === `${SA_COMMAND}`) AsFunc(msg);
+  else if (msg.content === `${AS_COMMAND}`) AsReactFunc(msg);
+  else if (msg.content.startsWith(`${GM_COMMAND}`)) GmFunc(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${HELP_COMMAND}`)) Help(msg);
 });
 
@@ -83,7 +89,29 @@ function Help(msg) {
 
   msg.channel.send(helpEmbed);
 }
-
+function AsFunc(msg) {
+  msg.react("🅰️");
+  msg.react("🇸");
+  msg.channel.send(`Aleykümselam ${msg.member} Hoş geldin.`);
+}
+function GmFunc(msg) {
+  msg.react("🌞");
+  msg.react("😇");
+  const daysMessages = [
+    "Kimsenin Seni Üzmeye Cesaret Edemediği,Neşe Dolu Bir Pazar Olsun!..",
+    "Tarihteki en kısa korku hikayesi, bugünün Pazartesi sabahı olması. Günaydın dostum, okula yine geç kalma.",
+    "Güzel Bir Salı Sabahından Selamlar Sevgiler. Hayırlı Sabahlar!",
+    "Huzur Dolu Güzel Bir Çarşamba Günü Olsun İnşallah. GÜNAYDINN!",
+    "Hoş geldin perşembe. Hayırlı Sabahlar.",
+    "Sabahınız Hayır Gününüz Aydın , Cumanız Mübarek Olsun. Günaydın!",
+    "Tatilden Selamlar! Günaydın!",
+  ];
+  const date = new Date();
+  msg.channel.send(daysMessages[date.getDay()]);
+}
+function AsReactFunc(msg) {
+  msg.react("🤲");
+}
 //!FUNCTIONS END
 
 //*START THE BOT
