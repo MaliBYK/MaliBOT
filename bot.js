@@ -1,10 +1,21 @@
 require("dotenv").config();
 
+const Distube = require("distube");
 const chalk = require("chalk");
 const Discord = require("discord.js");
 const client = new Discord.Client({
-  partials: ["MESSAGE", "GUILD_MEMBER"],
+  // partials: ["MESSAGE", "GUILD_MEMBER"],
+  // restTimeOffset:0,
+  // presence: {
+  //   status: "dnd",
+  //   activity.name: {
+  //     name:"MaliBOT",
+  //     activity: "PLAYING mb!help"
+  //   }
+  // }
 });
+
+const distube = new Distube(client, {});
 
 const BOT_PREFIX = process.env.BOT_PREFIX;
 const MALI_KING_COMMAND = "mali king";
@@ -28,8 +39,8 @@ client.on("ready", () => {
 client.on("message", msg => {
   msg.content = msg.content.toLowerCase();
 
-  if(msg.author.bot)return;
-  else if(!msg.guild) return;
+  if (msg.author.bot) return;
+  else if (!msg.guild) return;
 
   isItMusicCommand(msg);
   if (msg.content.startsWith(`${MALI_KING_COMMAND}`)) reactWithCrown(msg);
@@ -43,7 +54,7 @@ client.on("message", msg => {
   else if (msg.content === `${AS_COMMAND}`) AsReactFunc(msg);
   else if (msg.content.startsWith(`${GM_COMMAND}`)) GmFunc(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${HELP_COMMAND}`)) Help(msg);
-  else if(msg.content.startsWith(`${BOT_PREFIX}${PING_COMMAND}`)) Ping(msg);
+  else if (msg.content.startsWith(`${BOT_PREFIX}${PING_COMMAND}`)) Ping(msg);
 });
 
 //!FUNCTIONS START
@@ -117,15 +128,15 @@ function GmFunc(msg) {
 function AsReactFunc(msg) {
   msg.react("🤲");
 }
-function Ping(msg){
-  msg.reply(client.ws.ping);
+function Ping(msg) {
+  msg.reply(`Your Ping : ${client.ws.ping}ms`);
 }
-function isItMusicCommand(msg){
+function isItMusicCommand(msg) {
   const args = msg.content.slice(process.env.BOT_PREFIX.length).split(" ");
   const command = args.shift();
 
-  if(command === "play")
-
+  if (command === "play") {
+  }
 }
 //!FUNCTIONS END
 
