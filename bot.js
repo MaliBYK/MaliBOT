@@ -1,8 +1,8 @@
 require("dotenv").config();
 
-const Distube = require("distube");
 const chalk = require("chalk");
 const Discord = require("discord.js");
+const { indexOf } = require("ffmpeg-static");
 const client = new Discord.Client({
   // partials: ["MESSAGE", "GUILD_MEMBER"],
   // restTimeOffset:0,
@@ -14,8 +14,6 @@ const client = new Discord.Client({
   //   }
   // }
 });
-
-const distube = new Distube(client, {});
 
 const BOT_PREFIX = process.env.BOT_PREFIX;
 const MALI_KING_COMMAND = "mali king";
@@ -33,12 +31,19 @@ const AS2_COMMAND = "as";
 const GM_COMMAND = "günaydın";
 const PING_COMMAND = "ping";
 const GN_COMMAND = "iyi geceler";
+const IS_IT_GOOD_NIGHT_COMMAND = "iyi mi geceler";
 client.on("ready", () => {
   console.log("Bot logged In");
 });
 
 //?CONDITIONS
 client.on("message", msg => {
+  if (msg.content.startsWith("İ")) {
+    msg.content = msg.content.split("");
+    msg.content[0] = "i";
+    msg.content = msg.content.join("");
+  }
+
   msg.content = msg.content.toLowerCase();
 
   if (msg.author.bot) return;
@@ -56,11 +61,17 @@ client.on("message", msg => {
   else if (msg.content === `${AS2_COMMAND}`) AsReactFunc(msg);
   else if (msg.content === `${GN_COMMAND}`) GnFunc(msg);
   else if (msg.content.startsWith(`${GM_COMMAND}`)) GmFunc(msg);
+  else if (msg.content.startsWith(`${IS_IT_GOOD_NIGHT_COMMAND}`))
+    isItGoodNight(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${HELP_COMMAND}`)) Help(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${PING_COMMAND}`)) Ping(msg);
 });
 
 //!FUNCTIONS START
+function isItGoodNight(msg) {
+  msg.react("🚬");
+  msg.reply("Dertliyiz Kardeşim Dertli...");
+}
 function reactWithCrown(msg) {
   msg.react("👑");
 }
@@ -142,7 +153,7 @@ function Ping(msg) {
 function GnFunc(msg) {
   const date = new Date();
   console.log(date.getHours());
-  if (date.getHours() > 17) {
+  if (date.getHours() > 14) {
     msg.react("🦉");
     msg.react("🌃");
     msg.channel.send(
