@@ -140,7 +140,9 @@ function Ping(msg) {
   msg.reply(`Your Ping : ${client.ws.ping}ms`);
 }
 function GnFunc(msg) {
-  if (new Date().getHours() > 17) {
+  const date = new Date();
+  console.log(date.getHours());
+  if (date.getHours() > 17) {
     msg.react("🦉");
     msg.react("🌃");
     msg.channel.send(
@@ -148,7 +150,7 @@ function GnFunc(msg) {
     );
   } else {
     msg.react("🌃");
-    msg.channel.send("Gece Daha Başladı...");
+    msg.channel.send("Gece Daha Yeni Başladı...");
   }
 }
 
