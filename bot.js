@@ -141,7 +141,7 @@ function GmFunc(msg) {
     msg.channel.send(daysMessages[date.getDay()]);
   } else {
     msg.react("😴");
-    msg.channel.send("Uyuya Kaldın Herhalde...");
+    msg.channel.send("Uyuya Kaldın Herhalde... Saat : ", date.getHours());
   }
 }
 function AsReactFunc(msg) {
