@@ -28,9 +28,11 @@ const MODERATOR_HELP_COMMAND = `${HELP_COMMAND} moderator`;
 const MEMBER_HELP_COMMAND = `${HELP_COMMAND} member`;
 const SERVER_INFO_COMMAND = "members";
 const SA_COMMAND = "sa";
-const AS_COMMAND = "as";
+const AS_COMMAND = "allaha şükür";
+const AS2_COMMAND = "as";
 const GM_COMMAND = "günaydın";
 const PING_COMMAND = "ping";
+const GN_COMMAND = "iyi geceler";
 client.on("ready", () => {
   console.log("Bot logged In");
 });
@@ -42,7 +44,6 @@ client.on("message", msg => {
   if (msg.author.bot) return;
   else if (!msg.guild) return;
 
-  isItMusicCommand(msg);
   if (msg.content.startsWith(`${MALI_KING_COMMAND}`)) reactWithCrown(msg);
   else if (msg.content === `${BOT_PREFIX}${I_AM_BOY_COMMAND}`) IAmBoy(msg);
   else if (msg.content === `${BOT_PREFIX}${I_AM_GIRL_COMMAND}`) IAmGirl(msg);
@@ -52,6 +53,8 @@ client.on("message", msg => {
     NumberOfPeople(msg);
   else if (msg.content === `${SA_COMMAND}`) AsFunc(msg);
   else if (msg.content === `${AS_COMMAND}`) AsReactFunc(msg);
+  else if (msg.content === `${AS2_COMMAND}`) AsReactFunc(msg);
+  else if (msg.content === `${GN_COMMAND}`) GnFunc(msg);
   else if (msg.content.startsWith(`${GM_COMMAND}`)) GmFunc(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${HELP_COMMAND}`)) Help(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${PING_COMMAND}`)) Ping(msg);
@@ -111,8 +114,6 @@ function AsFunc(msg) {
   msg.channel.send(`Aleykümselam ${msg.member} Hoş geldin.`);
 }
 function GmFunc(msg) {
-  msg.react("🌞");
-  msg.react("😇");
   const daysMessages = [
     "Kimsenin Seni Üzmeye Cesaret Edemediği,Neşe Dolu Bir Pazar Olsun!..",
     "Tarihteki en kısa korku hikayesi, bugünün Pazartesi sabahı olması. Günaydın dostum, okula yine geç kalma.",
@@ -123,7 +124,14 @@ function GmFunc(msg) {
     "Tatilden Selamlar! Günaydın!",
   ];
   const date = new Date();
-  msg.channel.send(daysMessages[date.getDay()]);
+  if (date.getHours() < 12) {
+    msg.react("🌞");
+    msg.react("😇");
+    msg.channel.send(daysMessages[date.getDay()]);
+  } else {
+    msg.react("😴");
+    msg.channel.send("Uyuya Kaldın Herhalde...");
+  }
 }
 function AsReactFunc(msg) {
   msg.react("🤲");
@@ -131,13 +139,19 @@ function AsReactFunc(msg) {
 function Ping(msg) {
   msg.reply(`Your Ping : ${client.ws.ping}ms`);
 }
-function isItMusicCommand(msg) {
-  const args = msg.content.slice(process.env.BOT_PREFIX.length).split(" ");
-  const command = args.shift();
-
-  if (command === "play") {
+function GnFunc(msg) {
+  if (new Date().getHours() > 17) {
+    msg.react("🦉");
+    msg.react("🌃");
+    msg.channel.send(
+      "Bir geceyi değil, bütün geceleri sana armağan ediyorum. İyi geceler."
+    );
+  } else {
+    msg.react("🌃");
+    msg.channel.send("Gece Daha Başladı...");
   }
 }
+
 //!FUNCTIONS END
 
 //*START THE BOT
