@@ -14,6 +14,8 @@ const client = new Discord.Client({
   //   }
   // }
 });
+//THIS COMMENT IS ONLY IN THE TEST BRANCH
+
 
 const BOT_PREFIX = process.env.BOT_PREFIX;
 const MALI_KING_COMMAND = "mali king";
