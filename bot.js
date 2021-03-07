@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+var goodMorning = require("./goodMorning");
 const chalk = require("chalk");
 const Discord = require("discord.js");
 const { indexOf } = require("ffmpeg-static");
@@ -60,7 +60,7 @@ client.on("message", msg => {
   else if (msg.content === `${AS_COMMAND}`) AsReactFunc(msg);
   else if (msg.content === `${AS2_COMMAND}`) AsReactFunc(msg);
   else if (msg.content === `${GN_COMMAND}`) GnFunc(msg);
-  else if (msg.content.startsWith(`${GM_COMMAND}`)) GmFunc(msg);
+  else if (msg.content.startsWith(`${GM_COMMAND}`)) goodMorning.GmFunc(msg);
   else if (msg.content.startsWith(`${IS_IT_GOOD_NIGHT_COMMAND}`))
     isItGoodNight(msg);
   else if (msg.content.startsWith(`${BOT_PREFIX}${HELP_COMMAND}`)) Help(msg);
@@ -124,26 +124,7 @@ function AsFunc(msg) {
   msg.react("🇸");
   msg.channel.send(`Aleykümselam ${msg.member} Hoş geldin.`);
 }
-function GmFunc(msg) {
-  const daysMessages = [
-    "Kimsenin Seni Üzmeye Cesaret Edemediği,Neşe Dolu Bir Pazar Olsun!..",
-    "Tarihteki en kısa korku hikayesi, bugünün Pazartesi sabahı olması. Günaydın dostum, okula yine geç kalma.",
-    "Güzel Bir Salı Sabahından Selamlar Sevgiler. Hayırlı Sabahlar!",
-    "Huzur Dolu Güzel Bir Çarşamba Günü Olsun İnşallah. GÜNAYDINN!",
-    "Hoş geldin perşembe. Hayırlı Sabahlar.",
-    "Sabahınız Hayır Gününüz Aydın , Cumanız Mübarek Olsun. Günaydın!",
-    "Tatilden Selamlar! Günaydın!",
-  ];
-  const date = new Date();
-  if (date.getHours() < 12) {
-    msg.react("🌞");
-    msg.react("😇");
-    msg.channel.send(daysMessages[date.getDay()]);
-  } else {
-    msg.react("😴");
-    msg.channel.send("Uyuya Kaldın Herhalde... Saat : ", date.getHours());
-  }
-}
+
 function AsReactFunc(msg) {
   msg.react("🤲");
 }
