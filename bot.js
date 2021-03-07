@@ -59,6 +59,7 @@ client.on("message", msg => {
   else if (msg.content === `${SA_COMMAND}`) AsFunc(msg);
   else if (msg.content === `${AS_COMMAND}`) AsReactFunc(msg);
   else if (msg.content === `${AS2_COMMAND}`) AsReactFunc(msg);
+  //this is coming from another file
   else if (msg.content === `${GN_COMMAND}`) GnFunc(msg);
   else if (msg.content.startsWith(`${GM_COMMAND}`)) GmFunc(msg);
   else if (msg.content.startsWith(`${IS_IT_GOOD_NIGHT_COMMAND}`))
