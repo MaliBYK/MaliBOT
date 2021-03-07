@@ -81,7 +81,7 @@ function IAmBoy(msg) {
   msg.member.roles.add("797567992007360522");
   msg.reply("Role 'Baylar' Succesfully Added!");
 }
-//this is a function for a girl
+//this is a function for a females
 function IAmGirl(msg) {
   msg.member.roles.add("797567729879482440");
   msg.reply("Role 'Bayanlar' Succesfully Added!");
